@@ -37,7 +37,7 @@ export default {
                .auth()
                .signInWithEmailAndPassword(this.email, this.password)
                .then(() => {
-                  this.$router.push("map")
+                  this.$router.push("/")
                })
                .catch((err) => {
                   this.feedback = err.message

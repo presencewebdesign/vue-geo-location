@@ -2,7 +2,7 @@
    <div class="navbar">
       <nav class="deep-purple darken-1">
          <div class="container">
-            <router-link to="/map" class="brand-logo left">
+            <router-link to="/" class="brand-logo left">
                Geo Location
             </router-link>
             <ul class="right">

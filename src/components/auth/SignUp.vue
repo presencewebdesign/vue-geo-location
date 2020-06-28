@@ -65,7 +65,7 @@ export default {
                         return ref.update({ user_id: cred.user.uid })
                      })
                      .then(() => {
-                        this.$router.push({ name: "GMap" })
+                        this.$router.push("/")
                      })
                      .catch((err) => {
                         this.feedback = err.message
