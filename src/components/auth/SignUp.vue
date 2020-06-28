@@ -47,28 +47,28 @@ export default {
                remove: /[$*_+~.()'"!\-:@]/g,
                lower: true,
             })
-            console.log("theslug ", this.slug)
             let ref = db.collection("users").doc(this.slug)
-
             ref.get().then((doc) => {
                if (doc.exists) {
                   this.feedback = "This alias already exists"
                } else {
-                  firebase.auth
-                     .createUserWithEmailAndPassword(this.email, this.password)
-                     .then((data) => {
-                        ref.set({
-                           alias: this.alias,
-                           geolocation: null,
-                           user_id: data.user.uid,
-                        })
+                  ref.set({ alias: this.alias, geolocation: null })
+                     .then(() => {
+                        return firebase
+                           .auth()
+                           .createUserWithEmailAndPassword(
+                              this.email,
+                              this.password
+                           )
+                     })
+                     .then((cred) => {
+                        return ref.update({ user_id: cred.user.uid })
                      })
                      .then(() => {
-                        this.$router.push("map")
+                        this.$router.push({ name: "GMap" })
                      })
                      .catch((err) => {
                         this.feedback = err.message
-                        console.log(err)
                      })
                }
             })

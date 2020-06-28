@@ -25,7 +25,7 @@ const router = new VueRouter({
    routes: [
       {
          path: "/map",
-         name: "map",
+         name: "GMap",
          component: GMap,
          meta: { requiresAuth: true },
       },
